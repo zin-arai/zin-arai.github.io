@@ -1,0 +1,161 @@
+body 
+{
+    font-family: 'Helvetica', sans-serif;
+    color:#005b94;
+    background-color:#efefef;
+    margin-top: 30px;
+    line-height:150%;
+    font-size:120%;
+}
+
+h1 
+{
+    color: #005b94;
+    font-size: 500%;
+    font-family: 'Schoolbell';
+    font-style: italic;
+    padding-bottom : 2px;
+    line-height: 90%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+h1::after
+{
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 80%;
+    display: block;
+    border-width : 0px 0px 20px 0px;
+    border-style : double;
+    border-color:#005b94;
+    opacity: 0.7;
+}
+
+h2 
+{
+    font-family: 'Schoolbell', serif;
+    color : #005b94;
+    /*font-family: 'Creepster';*/
+    font-size: 160%;
+    font-style: italic;
+    border-width : 0px 0px 4px 24px;
+    border-style : solid;
+    /*border-color:#005b94; */
+    border-color : #005b94;
+    padding-left : 5px;
+    line-height: 90%;
+    margin-top: 2ex;
+    margin-bottom: 1.0ex;
+    opacity: 0.9;
+}
+
+h3 
+{
+    /*font-family: 'Reenie Beanie', serif;*/
+    color : #C8C8f8;
+    color : #005b94;
+    font-family: 'Schoolbell';
+    font-size: 125%;
+    font-style: italic;
+    border-width : 0px 0px 3px 0px;
+    border-style : solid;
+    border-color : #005b94;
+    line-height: 90%;
+    margin-top: 2ex;
+    margin-bottom: 1.0ex;
+    opacity: 0.75;
+}
+
+dt 
+{ 
+    margin-top: 0.8ex;
+}
+
+li 
+{ 
+    margin-top: 0.8ex;
+}
+
+dl.horizontal dt {
+    clear: left;
+    float: left;
+    margin: 0 0 0.5em 1em;
+    width: 8em;
+    border-left: solid 8px #CCC;
+    padding-left: 5px;
+    color:#005c92; 
+    /*color: #000;*/
+}
+
+dl.horizontal dd {
+    margin-bottom: 0.5em;
+}
+
+#my_header
+{
+    margin: 0 auto;
+    width: 85%;
+}
+
+#my_footer
+{
+    margin:0 auto;
+    width:85%;
+    background-color:#dadfda;
+}
+
+#my_body
+{
+    width:85%;
+    margin:0 auto;
+}
+
+#my_body.gray
+{
+    color: #005b94;
+    background-color:#dadfda;
+    width:85%;
+    margin:0 auto;
+    border-radius: 20px;
+}
+
+#my_navigation 
+{ 
+    font-family: "Schoolbell";
+    font-size:125%;
+    float:left;
+    width:250px;
+    padding-top: 25px;
+    padding-left:20px;
+    line-height: 180%;
+}
+
+/*#my_navigation a 
+{
+    font-weight: bold;
+}*/
+
+#my_contents
+{
+    margin-top: 40px;
+    margin-left: 220px;
+    padding-left: 50px;
+    padding-right:40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color:#fafffa;
+    border-radius: 0px 20px 20px 0px;
+    margin-bottom: 40px;
+}
+
+#my_img
+{
+    margin-bottom: 10px;
+}
+
+img
+{
+    border-radius: 10px;
+}

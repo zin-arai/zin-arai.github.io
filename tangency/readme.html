@@ -1,0 +1,121 @@
+<html>
+
+<head>
+  <title>A Program for Rigorous Tangency Verification</title>
+  <link rel="stylesheet" href="arai.css" type="text/css">
+</head>
+
+<body>
+<h1>About</h1>
+This is a program to rigorously verify the existence of a homoclinic tangency of Henon map (x, y) \mapsto (a - x^2 + by, x).
+
+<h1>Requirement</h1>
+<p>
+You need to have the following programs installed properly on your computer.
+<ul>
+ <li> <a href="http://www.mathworks.com/">MATLAB</a>
+ <li> <a href="http://math-www.uni-paderborn.de/~agdellnitz/gaio/">GAIO</a>
+ <li> <a href="http://www.boost.org/">boost</a>
+ <li> <a href="http://chomp.rutgers.edu/">CHomP</a> (You need to build a long int version, see below)
+</ul>
+</p>
+<p>
+By default, <tt>CHomP</tt> assumes that the coordinate of cubical sets takes value in short integer (16 bits).
+This is not sufficient for our purpose.
+Therefore, you need to change the configuration of CHomP as follows.
+</p>
+<p>
+Open the file chomp-full/include/chomp/cubes/pointset.h and find the line
+<pre width=80>
+    typedef short int coordinate;
+</pre>
+(in 2009-02-19 version, this is the line 63).
+Then replace this line with
+<pre width=80>
+    typedef long int coordinate;
+</pre>
+and then make CHomP.
+
+</p>
+
+<h1>Installation</h1>
+<p>
+Download <a href="">tangency.tar.gz</a> and extract it.
+A directory named "tangency", which contains the program codes, will be created.
+</a>
+
+<p>
+You need to compile MEX source files into shared libraries.
+Type
+<pre width=80>
+    make
+</pre>
+in the directory "tangency" to do this.
+Be sure that the command mex (contained in MATLAB) is in your PATH, and the variable BOOSTDIR defined in makefile is correct.
+</p>
+
+<H1>Running</H1>
+<p>
+1. Launch MATLAB at the "tangency" directory and type
+<pre width=80>
+    run_tangency
+</pre>
+to MATLAB.
+This will create files tangency.X, tangency.A containing a cubical index pair (X, A) and tangency.map containing the multi-valued map on (X, A).
+The last line of the output shows the parameter region on which we examine the existence of a tangency.
+
+</p>
+
+<p>
+2. Use the command cnvmvmap of CHomP to convert tangency.map into the input form of homcubes.
+<pre width=80>
+    cnvmvmap tangency.map tangency.cubmap
+</pre>
+(Note: the file created by cnvmvmap might be huge as 1GB).
+
+<p>
+3. Finally, use the command homcube of CHomP to compute the Conley index
+<pre width=80>
+    homcubes tangency.cubmap -i tangency.X tangency.A 
+</pre>
+If the result is not shift equivalent to the direct sum of the Conley index of two hyperbolic saddles, it follows that there exists a connecting orbit from E^u to E^s, which then implies the existence of a tangency in the base space.
+</p>
+
+<p>
+If you want to apply the program to a different parameter value or precision (depth), edit the configuration file setup.m.
+By default, this program finds a tangency with respect to the left fixed point of the Henon map.
+To apply the program to the other fixed point, edit fixed_points.m (and change the parameter values properly, of course).
+</p>
+
+
+<h1>Files</h1>
+
+<h2>Matlab M-files</h2>
+<dl>
+  <dt> run_tangency.m
+    <dd> The main script that call all other scripts.</dd>
+  <dt> setup.m
+    <dd> 
+      Creates a cubical set that contains a candidate of a connecting orbit corresponding to a tangency. 
+      The parameters are also defined in this script.</dd>
+  <dt> refine.m
+    <dd> Refines the cubical covering of a connecting orbit using the subdivision algorithm.</dd>
+  <dt> insert_fp.m
+   <dd> To a gives tree, insert the cubes containing fixed points.</dd>
+  <dt> indexpair.m
+    <dd> Creates an index pair and the index map on it.</dd>
+</dl>
+
+
+<h2>MEX source files</h2>
+<dl>
+  <dt> phenonmap_boost.cpp
+    <dd> The definition of the map induced by the Henon map on the projectivized tangent bundle.</dd>
+ <dt> phenonmap_inverse_boost.cpp
+   <dd> The definition of the map induced by the inverse of Henon map on the projectivized tangent bundle.</dd>
+ <dt> invset_szy.c
+   <dd> A program to compute the invariant part of a directed graph (given as a sparse matrix) following an algorithm of A. Szymczak.
+</dl>
+
+</body>
+</html>

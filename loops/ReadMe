@@ -1,0 +1,26 @@
+This directory contains supplemental materials to the paper
+"On Loops in the Hyperbolic Locus of the Complex Henon Map and Their Monodromies".
+
+Text files of hyperbolic parameter values:
+      a+025.txt:  a = 0.25
+      a-0375.txt: a = -0.375
+      ap.txt:     a = 1
+      ar.txt:     a = -1    
+
+GAIO data tree file containing hyperbolic parameter values:
+     cpxhenon_a+025_hyperbolic_04854993.tree:  a = 0.25
+     cpxhenon_a-0375_hyperbolic_04639335.tree: a = -0.375
+     cpxhenon_ap_hyperbolic_05387244.tree:     a = 1
+     cpxhenon_ar_hyperbolic_05385974.tree:     a = -1
+     # You can load these files with a command like
+     # tree = Tree('filename_of_tree')
+
+Programs:
+     hyperbolicity_cpxhenon.tar.gz: for proving hyperbolicity
+     monodromy_cpxhenon.tar.gz: for computing monodromy
+
+     These programs requires the following libraries:
+     GAIO (http://math-www.uni-paderborn.de/~agdellnitz/gaio/)
+     CAPD (http://capd.wsb-nlu.edu.pl/)
+
+Zin ARAI

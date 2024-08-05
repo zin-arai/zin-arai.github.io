@@ -1,0 +1,103 @@
+This is a program to prove the hyperbolicity of real Henon maps
+(x, y) |--> (a - x^2 + by, x): R^2 -> R^2.
+
+INSTALL
+==================================================
+1. Install MATLAB
+   http://www.mathworks.com/
+
+2. Install GAIO (Global Analysis of Invariant Objects)
+   http://math-www.uni-paderborn.de/~agdellnitz/gaio/
+
+3. Install CAPD (Computer Assisted Proofs in Dynamics)
+   http://capd.wsb-nlu.edu.pl/
+   (If you use compiled binary files and do not want to compile 
+   C and C++ source codes by yourself, you can skip this step.)
+
+4. Check if MATLAB, GAIO (and CAPD) are properly installed.
+
+5. Expand realhenon.tar.gz, using gunzip and tar. 
+   This will create a directory named 'realhenon' which
+   contain the following files.
+
+
+FILES AND DIRECTORIES
+==================================================
+Source Codes:
+       realhenon.cpp           C++ source code for the map definition
+       hyp_realhenon.c         C source code for main routine
+       single_param.m          MATLAB script
+       showhyp.m               MATLAB script
+       showsta.m               MATLAB script
+       start_comp.m            MATLAB script
+
+Binary Object Files:
+       hyp_realhenon.mexmac    Mach-O object file for MacOSX (PowerPC CPU)
+       hyp_realhenon.mexglx    ELF object file for LINUX (i486 CPU)
+
+Directories:
+       data/                   directory for temporary data and the results
+       snapshots/              directory for snapshots taken every one hour
+
+Others:
+       README                  This file
+       makefile                makefile (GNU make)
+       mexopts.sh              mex option file
+
+HOW TO USE (SINGLE PARAMETER VALUE)
+==================================================
+1. Edit 'parameter setting' lines in single_param.m
+   For example, if you want to prove the hyperbolicity for 
+   a = 5.4 and b = 1, put
+       param_inf = [5.4; 1] 
+       param_sup = [5.4; 1]
+
+   Note that since the expression '5.4' as a double precision number
+   is not mathematically equivalent to the real number '5.4'. 
+   Therefore if you want to be rigorous, the setting should be like
+       param_inf = [5.39999999; 1] 
+       param_sup = [5.40000001; 1]
+
+2. Launch MATLAB and type
+   single_param
+   then the computation starts.
+
+3. If the program proves the hyperbolicity of given parameter, 
+   it will exit displaying 'Hyperbolic!'.
+
+
+HOW TO USE (2-PARAMETER FAMILY)
+==================================================
+   Launch MATLAB and type 'start_comp' then the computation starts.
+
+   The set of hyperbolic parameter values will be saved in
+   'data/hyperbolic.tree' and the remaining parameter values in 
+   'data/remaining.tree'. These are GAIO tree files.
+
+   To show the hyperbolic parameter values, launch another MATLAB and
+   type 'showhyp'. You can see the number of remaining cubes in the
+   parameter tree by typing 'showsta'.
+
+   The status of the program will be saved once every hour to the directory 
+   'snapshots'. The file 'snapshots/hyperbolic_xxxxxxxx.tree' is a copy of
+   'data/hyperbolic.tree' when xxxxxxxx seconds past form the beginning.
+   
+   If the computation was interrupted for any reason, you can resume the
+   computation using the saved data in 'snapshots' and function resume_comp. 
+   For example, if there is a file 'data/hyperbolic_00003600.tree', you can
+   resume the computation by running 'resume_comp(3600)'.
+
+
+COMPILATION
+==================================================
+If you want to make the binary file (i.e. hyp_realhenon.mexXXX) by yourself,
+simply type 'make' at the 'realhenon' directory.
+
+Be sure that CPAD and GAIO are installed properly in the directories 
+given in 'makefile' and 'mexopts.sh' is properly configured.
+
+
+==================================================
+Zin ARAI 
+arai@math.kyoto-u.ac.jp     
+http://www.math.kyoto-u.ac.jp/~arai/

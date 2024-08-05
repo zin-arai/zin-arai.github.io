@@ -1,0 +1,81 @@
+<html>
+
+<head>
+  <title>On parameter loci of the H&eacute;non family</title>
+  <link rel="stylesheet" href="../arai.css" type="text/css">
+</head>
+
+<div id="my_body" class="gray">
+<body>
+<h1>About</h1>
+This is a set of programs to rigorously verify the conditions that appear in "On parameter loci of the H&eacute;non family" by ZA and Yutaka Ishii.
+
+<h1>Requirement</h1>
+<p>
+You need to have the following programs installed properly on your computer.
+<ul>
+ <li> C++ compiler</a> (g++, icc, etc.)
+ <li> <a href="https://www.python.org/">Python</a> (=> 2.7)
+ <li> <a href="http://www.boost.org/">boost</a> (=> 1.55)
+</ul>
+</p>
+
+<h1>Download and Compilation</h1>
+<ol>
+<li>
+Download <a href="./locus.tar.gz">locus.tar.gz</a> and extract it.
+Then a directory named <code>locus</code> will be created.
+</li>
+
+<li>
+Change the current directory to <code>locus/src</code> and edit <code>makefile</code> therein according to your environment.
+You need to set variables <code>BOOSTDIR</code> to the directory where boost is installed (by default, it is <code>~/boost/</code>) and
+<code>CXX</code> to the name of your C++ compiler (by default, it is <code>g++</code>).
+</li>
+
+<li>
+At the directory <code>locus/src</code>, type <code>make</code> to compile all programs. Binary files will be installed in <code>locus/bin</code>.
+</ol>
+
+<H1>How to Run</H1>
+
+<ol>
+<li>
+  First we need to generate the data files.
+  Change the current directory to <code>locus/run</code> and execute Python scripts <code>data_interpolation_pos.py</code> and <code>data_interpolation_nes.py</code> therein.
+  These scripts read the data of boxes at selected parameter values (stored in "locus/data/positive_distinguished" and "locus/data/negative_distinguished") and
+  generate the data at other parameter values by linear interpolation.
+  The generated data files will be installed in "locus/data/positive" and "locus/data/negative" (Remark: directories and files with "positive" or "pos" in their names are programs and data for b > 0, "negative" or "neg" for b < 0).
+
+</li>
+
+<li>
+  Run the following scripts at <code>locus/run</code> .
+  These script files have two parameters <i>process_number</i> and <i>max_process</i> to specify the number of processes that you want to run in parallel.
+  If you want to run multiple processes in parallel, set <i>max_process</i> to the number of processes and run the script for <i>process_number</i> = 0, 1, ..., <i>max_process</i> - 1.
+  To run the program in a single process mode, call these scripts without a parameter.
+  If the script exits normally with no error message, the verification is completed.
+<dl>
+  <dt> <code>run_pos_CMC_B.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 2.18 (Crossed Mapping Condition) for b > 0 and Lemma 3.4.</dd>
+  <dt> <code>run_neg_CMC_B.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 2.18 (Crossed Mapping Condition) for b < 0 and Lemma 3.7.</dd>
+  <dt> <code>run_neg_C.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 3.11.</dd>
+  <dt> <code>run_neg_D.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 3.13.</dd>
+  <dt> <code>run_pos_E.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 5.6.</dd>
+  <dt> <code>run_neg_E.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove Lemma 5.8.</dd>
+  <dt> <code>run_pp.py</code> [<i>process_number</i> <i>max_process</i>]
+    <dd> Prove (i) of Theorem 2.12 by showing the existence of  a periodic point of period 7 in C^2 \setminus R^2.
+</dl>
+
+</li>
+
+<ol>
+
+</body>
+</div>
+</html>
