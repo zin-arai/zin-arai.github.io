@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=iso-2022-jp">
-<TITLE>GAIO$B%a%b(B($B:n@.ESCf(B)</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>GAIOメモ(作成途中)</TITLE>
 <STYLE TYPE="text/css" MEDIA=screen>
 <!--
   BODY  { background: #FFEECC; color: black; }
@@ -29,90 +29,90 @@
 -->
 </STYLE>
 </HEAD>
-<H1>$B$3$NJ8>O$K$D$$$F(B</H1>
+<H1>この文章について</H1>
 <P>
-$B$3$NJ8>O$O!"NO3X7O8&5f$N$?$a$N%W%m%0%i%`%Q%C%1!<%8(B
+この文章は、力学系研究のためのプログラムパッケージ
 <A href="http://math-www.uni-paderborn.de/~agdellnitz/gaio/">GAIO</A>
-$B$r;H$&>e$G;d$N5$$E$$$?;v$r$D$l$E$l$J$k$^$^$K=q$-O"$M$?$b$N$G$9!#(B
-$B$"$/$^$G8D?ME*%a%b$G$9$N$G!"FbMF$K$D$$$F$O40A4$KL5J]>Z$G$9!#0-$7$+$i$:!#(B
+を使う上で私の気づいた事をつれづれなるままに書き連ねたものです。
+あくまで個人的メモですので、内容については完全に無保証です。悪しからず。
 </P>
 <P>
 <OL>
- <LI> <A href="#whatis">GAIO$B$H$O!)(B</A>
- <LI> <A href="#algorithm">subdivision algorithm$B$H$O!)(B</A>
- <LI> <A href="#files">GAIO$B$r9=@.$9$k%U%!%$%k$?$A(B</A>
- <LI> <A href="#compile">$B%3%s%Q%$%k!u%$%s%9%H!<%k(B</A>
- <LI> <A href="#run">$B7W;;$7$F$_$k(B</A>
- <LI> <A href="#model">$B%b%G%k$r:n$C$F$_$k(B</A>
- <LI> <A href="#functions">$B4X?t$H$=$N0z?t(B</A>
- <LI> <A href="#reference">$B;29MJ88%(B</A>
+ <LI> <A href="#whatis">GAIOとは？</A>
+ <LI> <A href="#algorithm">subdivision algorithmとは？</A>
+ <LI> <A href="#files">GAIOを構成するファイルたち</A>
+ <LI> <A href="#compile">コンパイル＆インストール</A>
+ <LI> <A href="#run">計算してみる</A>
+ <LI> <A href="#model">モデルを作ってみる</A>
+ <LI> <A href="#functions">関数とその引数</A>
+ <LI> <A href="#reference">参考文献</A>
 </OL>
 </P>
-<H1 id="whatis">GAIO$B$H$O!)(B</H1>
+<H1 id="whatis">GAIOとは？</H1>
 <P>
-GAIO $B$H$O(B Global Analyis of Invarian Objects $B$NF,J8;z$G$"$j!"(B
-<A href="http://math-www.uni-paderborn.de/~agdellnitz">Michael Dellnitz</A>$B!"(B
+GAIO とは Global Analyis of Invarian Objects の頭文字であり、
+<A href="http://math-www.uni-paderborn.de/~agdellnitz">Michael Dellnitz</A>、
 <A href="http://www-math.uni-paderborn.de/~junge/">Oliver Junge</A>
-$B$rCf?4$H$9$kNO3X7O8&5f<T$N%0%k!<%W$K$h$j3+H/$5$l$?!"NO3X7O8&5f$N$?$a$N%W%m%0%i%`72$NAm>N$G$9!#(B
+を中心とする力学系研究者のグループにより開発された、力学系研究のためのプログラム群の総称です。
 </P>
 
 <P>
-GAIO $B$O(B subdivision argorithm $B$HH`$i$,8F$VJ}K!$K$h$C$F!"%"%H%i%/%?!<$dITJQB?MMBN$N(B covering $B$r8+$D$1$@$7$F$/$l$^$9!#(B
-$B$^$?7W;;7k2L$r(B Matlab $B$N%0%i%U%#%C%/%95!G=$rMQ$$$F?^<($9$k$3$H$,$G$-$k$N$G!"(Blorenz $B%"%H%i%/%?!<$r%^%&%9$G$0$j$0$j2sE>$5$;$?$j!"%"%K%a!<%7%g%s$r$5$;$k$H$$$C$?$3$H$,4JC1$K=PMh$^$9!#(B
+GAIO は subdivision argorithm と彼らが呼ぶ方法によって、アトラクターや不変多様体の covering を見つけだしてくれます。
+また計算結果を Matlab のグラフィックス機能を用いて図示することができるので、lorenz アトラクターをマウスでぐりぐり回転させたり、アニメーションをさせるといったことが簡単に出来ます。
 </P>
 
 <P>
-$B8=:_$N%P!<%8%g%s$N(B GAIO $B$O(B
+現在のバージョンの GAIO は
 <A href="http://www.cybernet.co.jp/matlab/">Matlab</A>
-$B$X$NDI2C%Q%C%1!<%8(B (Toolbox) $B$H$$$&7A$G<BAu$5$l$F$*$j!"(BGAIO $B$r;H$&$?$a$K$O(B Matlab $B$,I,MW$K$J$j$^$9!#(B
-GAIO $B$N3+H/$O(B Linux $B>e$G9T$J$o$l$F$$$k$h$&$G$9$,!"(BMatlab $B$,F0:n$9$k$?$$$,$$$N(B Unix $B%/%m!<%s>e$G;H$($k$H;W$$$^$9!#(B
-$B$^$?!"0lIt$N5!G=$rMQ$$$k$?$a$K$OM-NA$N%i%$%V%i%j(B
+への追加パッケージ (Toolbox) という形で実装されており、GAIO を使うためには Matlab が必要になります。
+GAIO の開発は Linux 上で行なわれているようですが、Matlab が動作するたいがいの Unix クローン上で使えると思います。
+また、一部の機能を用いるためには有料のライブラリ
 <A href="http://www.netscience.ne.jp/comid/engin/leda/index.html">LEDA</A>
-$B$,I,MW$K$J$j$^$9$,!"ITJQB,EY4X78$N7W;;$r$7$J$$8B$j$O(B LEDA $BH4$-$G$b==J,;H$($^$9!#(B
+が必要になりますが、不変測度関係の計算をしない限りは LEDA 抜きでも十分使えます。
 </P>
 
 <P>
-GAIO $B$rF~<j$9$k$?$a$K$O3+H/<T$K%a!<%k$GO"Mm$7$F%=!<%9%U%!%$%k$r$b$i$&I,MW$,$"$j$^$9!#(B
-<A href="http://math-www.uni-paderborn.de/~agdellnitz/gaio/">$B%&%'%V%Z!<%8(B</A>
-$B$+$i$?$I$C$F$_$F$/$@$5$$!#(B
+GAIO を入手するためには開発者にメールで連絡してソースファイルをもらう必要があります。
+<A href="http://math-www.uni-paderborn.de/~agdellnitz/gaio/">ウェブページ</A>
+からたどってみてください。
 </P>
 
-<H1 id="algorithm">subdivision algorithm$B$H$O!)(B</H1>
+<H1 id="algorithm">subdivision algorithmとは？</H1>
 <P>
-$BO@J8$rFI$a!#(B
+論文を読め。
 </P>
 
-<H1 id="files">GAIO$B$r9=@.$9$k%U%!%$%k$?$A(B</H1>
+<H1 id="files">GAIOを構成するファイルたち</H1>
 <P>
-$B%G%#%l%/%H%j(B "GAIODIR" $B0J2<$K(B GAIO $B$N%=!<%9%"!<%+%$%V$rE83+$7$F$"$k$H$7$^$9!#(B
-GAIO $B$N<BBN$O(B GAIODIR $B0J2<$N3F%G%#%l%/%H%j$K$"$k(B *.m $B$d(B *.c $B$H$$$&L>A0$N%U%!%$%k$?$A$G$9!#(B
+ディレクトリ "GAIODIR" 以下に GAIO のソースアーカイブを展開してあるとします。
+GAIO の実体は GAIODIR 以下の各ディレクトリにある *.m や *.c という名前のファイルたちです。
 </P>
 <P>
-.m $B$H$$$&3HD%;R$O$=$N%U%!%$%k$,(B Matlab $B$N%9%/%j%W%H%U%!%$%k$G$"$k$3$H$rI=$7!"(B
-$B3HD%;R$r=|$$$?%U%!%$%kL>$r(B Matlab $B$KBG$A9~$`$H$3$N%U%!%$%k$,8F$P$l$^$9!#(B
-$BMW$9$k$K(B Matlab $B$N%3%^%s%I$,C1$KJB$s$G$$$k%F%-%9%H%U%!%$%k$G$9$,!"@hF,$K4JC1$J2r@b$,$D$$$F$$$k$N$G0lFI$r$*$9$9$a$7$^$9!#(B
+.m という拡張子はそのファイルが Matlab のスクリプトファイルであることを表し、
+拡張子を除いたファイル名を Matlab に打ち込むとこのファイルが呼ばれます。
+要するに Matlab のコマンドが単に並んでいるテキストファイルですが、先頭に簡単な解説がついているので一読をおすすめします。
 </P>
 
 <P>
-.c $B$H$$$&3HD%;R$r;}$D%U%!%$%k$O(B C$B8@8l$N%=!<%9%U%!%$%k$G$9!#(B
-$B<g$K%9%/%j%W%H$G$OB.EYE*$KLdBj$,$"$k4X?t$,(B C$B8@8l$G=q$+$l$F$$$^$9!#(B
-$B$3$l$i$N%U%!%$%k$r(B Matlab $B$+$i8F$S=P$;$k$h$&$K$9$k$K$O!"<!@a$G2r@b$9$k$h$&$K!"%3%s%Q%$%k$7$F(B shared object $B$KJQ49$7$J$/$F$O$J$j$^$;$s!#(B
+.c という拡張子を持つファイルは C言語のソースファイルです。
+主にスクリプトでは速度的に問題がある関数が C言語で書かれています。
+これらのファイルを Matlab から呼び出せるようにするには、次節で解説するように、コンパイルして shared object に変換しなくてはなりません。
 </P>
 
 
-<H1 id="compile">$B%3%s%Q%$%k!u%$%s%9%H!<%k(B</H1>
+<H1 id="compile">コンパイル＆インストール</H1>
 <P>
-README $B$rFI$s$G$,$s$P$l!#(B
-gcc $B$K%3%s%Q%$%k%*%W%7%g%s(B "-lc" $B$rEO$5$J$$$H(B shared object $B$N:n@.$G%3%1$k$+$b$7$l$J$$!#(B
+README を読んでがんばれ。
+gcc にコンパイルオプション "-lc" を渡さないと shared object の作成でコケるかもしれない。
 </P>
 
-<H1 id="run">$B7W;;$7$F$_$k(B</H1>
+<H1 id="run">計算してみる</H1>
 <P>
-$B$H$j$"$($:(B GAIODIR/doc/matlab/dansebook.ps $B$N(B11$B%Z!<%8$K$"$k(B lorenz $B%"%H%i%/%?!<$NNc$r<B9T$7$F$_$^$7$g$&!#4D6-JQ?t(B GAIODIR $B$,@5$7$/%;%C%H$5$l$F$$$k$3$H$r3NG'$7$F(B matlab $B$r5/F0$7$^$9!#(B
-$B%f!<%6$N%[!<%`0J2<$K(B GAIO $B$rCV$$$F$$$k>l9g$O(B
-addpath /home/$B%f!<%6L>(B/gaio/gaio $B$HF~NO$7$F(B GAIODIR $B$r(B matlab $B$N8!:w%Q%9$K2C$($F$/$@$5$$!#(B
-$B$3$3$G<!$N%3%^%s%I$?$A$r=g<!<B9T$7$^$9!#(B
-$B@hF,$N?t;z$O0J2<$N@bL@$N$?$a$K$D$1$?9THV9f$G$9!#(B
+とりあえず GAIODIR/doc/matlab/dansebook.ps の11ページにある lorenz アトラクターの例を実行してみましょう。環境変数 GAIODIR が正しくセットされていることを確認して matlab を起動します。
+ユーザのホーム以下に GAIO を置いている場合は
+addpath /home/ユーザ名/gaio/gaio と入力して GAIODIR を matlab の検索パスに加えてください。
+ここで次のコマンドたちを順次実行します。
+先頭の数字は以下の説明のためにつけた行番号です。
 </P>
 <CENTER>
 <TABLE >
@@ -133,72 +133,72 @@ addpath /home/$B%f!<%6L>(B/gaio/gaio $B$HF~NO$7$F(B GAIODIR $B$r(B matlab 
 </TABLE>
 </CENTER>
 <P>
-$B%(%i!<$,$J$1$l$P(B step 1: 40 boxes ... step 10: 19351 boxes $B$H$+$J$s$H$+=PNO$5$l$k$G$7$g$&!#$3$l$G86E@$N0BDjB?MMBN$r4^$`(B19531$B8D$N%\%C%/%9$,F@$i$l$^$7$?!#(B
-plotb(tree) $B$HF~NO$9$l$P(B matlab $B$N(B plot $B5!G=$r8F$S=P$7$F$3$l$i$N%\%C%/%9$r?^<($9$k$3$H$,$G$-$^$9!#(B
+エラーがなければ step 1: 40 boxes ... step 10: 19351 boxes とかなんとか出力されるでしょう。これで原点の安定多様体を含む19531個のボックスが得られました。
+plotb(tree) と入力すれば matlab の plot 機能を呼び出してこれらのボックスを図示することができます。
 </P>
 
 <P>
-$B>e$NNc$K$*$$$F3F9T$,2?$r$7$F$$$k$N$+4JC1$K8+$F$_$^$9!#(B
-$B<B:]$K7W;;$r<B9T$7$F$$$k$N$O(B14$B9TL\$@$1$G!"$=$l$^$G$OA4$F>u67$N@_Dj$G$9!#(B
-$B3F%3%^%s%I$K$D$$$F$h$j>\$7$/$O8e$N@a$r;2>H$7$F$/$@$5$$!#(B
+上の例において各行が何をしているのか簡単に見てみます。
+実際に計算を実行しているのは14行目だけで、それまでは全て状況の設定です。
+各コマンドについてより詳しくは後の節を参照してください。
 </P>
 
 <P>
-$B$^$:(B1$B9TL\$G$O!"JQ?t(B lorenz $B$K$h$C$F(B lorenz $BJ}Dx<0$N%b%G%k$,8F$S=P$;$k$h$&$K@_Dj$7$^$9!#(B
-$B1&JU$G(B GAIODIR/gaio/@Model/Model.m $B$,8F$S=P$5$l!"0z?t$,(B 'lorenz' $B$J$N$G(B Model.m $B$O(B GAIODIR/models/$B%"!<%-%F%/%A%cL>(B/lorenz.so $B$H$$$&%U%!%$%k$rJQ?t(B lorenz $B$KEO$7$^$9!#(B
-$B$3$3$G:8JU$NJQ?t(B lorenz $B$H1&JU$N%b%G%kL>(B lorenz $B$r:.F1$7$J$$$h$&$K$7$F$/$@$5$$!#(B
-$B:8JU$OJQ?t$J$N$GK\Ev$O2?$G$bNI$$$N$G$9!#(B
-$BNc$($P(B1$B9TL\$r(B hogehoge = Model('lorenz') $B$K$7$?>l9g$O!"(B3$B9TL\$b(B rk4.model = hogehoge $B$K$9$l$PF1$87k2L$,F@$i$l$^$9!#(B
+まず1行目では、変数 lorenz によって lorenz 方程式のモデルが呼び出せるように設定します。
+右辺で GAIODIR/gaio/@Model/Model.m が呼び出され、引数が 'lorenz' なので Model.m は GAIODIR/models/アーキテクチャ名/lorenz.so というファイルを変数 lorenz に渡します。
+ここで左辺の変数 lorenz と右辺のモデル名 lorenz を混同しないようにしてください。
+左辺は変数なので本当は何でも良いのです。
+例えば1行目を hogehoge = Model('lorenz') にした場合は、3行目も rk4.model = hogehoge にすれば同じ結果が得られます。
 </P>
 
 <P>
-2$B9TL\$+$i(B5$B9TL\$G$O>oHyJ,J}Dx<0$N?tCM@QJ,$r$I$N$h$&$K9T$J$&$+$r@_Dj$7$^$9!#(B
-2$B9TL\$G$OJQ?t(B rk4 $B$K$h$C$F(B4$B<!$N%k%s%2!&%/%C%?K!$,8F$S=P$5$l$k$h$&$K@_Dj$7$^$9!#(B
-GAIODIR/integrators $B$KB>$N@QJ,%a%=%C%I$b$"$j$^$9$7!"<+J,$GDI2C$9$k$3$H$b$G$-$^$9!#(B
-3$B9TL\$G$O(B rk4 $B$K@h$KDj5A$7$?(B lorenz $B$r@QJ,$9$k$h$&$K;X<($7$^$9!#(B
-4$B9TL\$O@QJ,$r;_$a$k;~4V!"(B5$B9TL\$O:9J,$9$k$H$-$N(B1$B%9%F%C%W$ND9$5$NDj5A$G$9!#(B
-$B$3$l$i$,Ii$N?tCM$K$J$C$F$$$k$N$O!"$3$3$G5a$a$h$&$H$7$F$$$k$N$,0BDjB?MMBN$@$+$i$G$"$j!"IT0BDjB?MMBN$r8+$?$$>l9g$O@5Ii$rH?E>$5$;$^$9!#(B
+2行目から5行目では常微分方程式の数値積分をどのように行なうかを設定します。
+2行目では変数 rk4 によって4次のルンゲ・クッタ法が呼び出されるように設定します。
+GAIODIR/integrators に他の積分メソッドもありますし、自分で追加することもできます。
+3行目では rk4 に先に定義した lorenz を積分するように指示します。
+4行目は積分を止める時間、5行目は差分するときの1ステップの長さの定義です。
+これらが負の数値になっているのは、ここで求めようとしているのが安定多様体だからであり、不安定多様体を見たい場合は正負を反転させます。
 </P>
 
 <P>
-6$B9TL\$+$i(B9$B9TL\$K$*$$$F!"(B"tree" $B$N@_Dj$r9T$J$$$^$9!#(B
-$B$^$:$O(B6$B9TL\$K$*$$$F0lHVBg85$K$J$k(B box $B$r!"Cf?4$,86E@$G3F:BI8<4J}8~$NBg$-$5$,$=$l$>$l(B 120$B!"(B120$B!"(B160 $B$H$J$k$h$&$JH"$H$7$FDj$a$^$9!#(B
-7$B9TL\$G$O(B tree $B$rNO3X7O$K$h$C$FJ,3d$7$F$$$/$H$-$K!"(Brk4 $B$r8F$S=P$9$h$&$K@_Dj$7$^$9!#(B
-rk4 $B$O@h$K@_Dj$7$??tCM@QJ,K!$G$"$j!"(Brk4.model = lorenz $B$J$N$G!"JQ?t(B tree $B$KBP$7$F!"$=$l$K:nMQ$9$kNO3X7O$H$7$F(B lorenz $B$,4XO"$E$1$i$l$?$3$H$K$J$j$^$9!#(B
-8$B9TL\$H(B9$B9TL\$O!"NO3X7O$K$h$C$FJQ7A$5$l$?(B box $B$,$b$H$N(B box $B$?$A$H$I$N$h$&$K8r$o$k$+$rH=Dj$9$k$?$a$NJ}K!$r7hDj$7$F$$$^$9!#(B
+6行目から9行目において、"tree" の設定を行ないます。
+まずは6行目において一番大元になる box を、中心が原点で各座標軸方向の大きさがそれぞれ 120、120、160 となるような箱として定めます。
+7行目では tree を力学系によって分割していくときに、rk4 を呼び出すように設定します。
+rk4 は先に設定した数値積分法であり、rk4.model = lorenz なので、変数 tree に対して、それに作用する力学系として lorenz が関連づけられたことになります。
+8行目と9行目は、力学系によって変形された box がもとの box たちとどのように交わるかを判定するための方法を決定しています。
 </P>
 
 <P>
-10$B9TL\$H(B11$B9TL\$OC1$K(B12$B9TL\$GMQ$$$k?tCM$rJQ?t$KBeF~$7$F$$$k$@$1$G$9!#(B
-$B?tCM$rBeF~$9$k$H(B 12$B9TL\$O(B tree.insert([0;0;0],21) $B$H$J$j$^$9$,!"$3$l$O(B6$B9TL\$G@_Dj$7$?(B box $B$r(B21$B2sJ,3d$7$F!"$=$NCf$+$i86E@$r4^$`(B box $B$r(B tree $B$KDI2C$7$m$H$$$&L?Na$G$9!#(B
-box $B$NJ,3d$O3F:BI8J}8~$K=g$K9T$J$o$l!":#$N>l9g$@$HAj6u4V$O(B3$B<!85$J$N$G$=$l$>$l$N:BI8J}8~$K(B7$B2sJ,3d$,9T$J$o$l$^$9!#(B
-$B$9$J$o$A!"86E@$rCf?4$H$9$kBg$-$J(B box $B$,3F:BI8J}8~$K(B 2^7 = 128 $BJ,3d$5$l$F=PMh$?(B 2097152 $B8D$N>.$5$J(B box $B$?$A$NCf$+$i!"86E@$r4^$`(B box $B$N$_$KCmL\$7$F!"(Btree $B$K<h$j9~$s$@$o$1$G$9!#(B
-$BJX59>e$3$N(B box $B$r(B b_0 $B$HL>IU$1$^$7$g$&!#(B
+10行目と11行目は単に12行目で用いる数値を変数に代入しているだけです。
+数値を代入すると 12行目は tree.insert([0;0;0],21) となりますが、これは6行目で設定した box を21回分割して、その中から原点を含む box を tree に追加しろという命令です。
+box の分割は各座標方向に順に行なわれ、今の場合だと相空間は3次元なのでそれぞれの座標方向に7回分割が行なわれます。
+すなわち、原点を中心とする大きな box が各座標方向に 2^7 = 128 分割されて出来た 2097152 個の小さな box たちの中から、原点を含む box のみに注目して、tree に取り込んだわけです。
+便宜上この box を b_0 と名付けましょう。
 </P>
 
 <P>
-14$B9TL\$G7W;;$,9T$J$o$l$^$9!#(B
-$B8=:_(B tree $B$N(B 21$B2sL\$NJ,3d$K$*$$$FA*$P$l$F$$$k$N$O(B b_0 $B$N$_$J$N$G!"(Bb_0 $B$r(B rk4 $B$GAw$j$^$9!#(B
-$B$9$J$o$A!"%k%s%2!&%/%C%?K!$G(B -0.1$BIC$N?tCM@QJ,$r9T$J$$$^$9!#(B
-$B$3$N@QJ,$K$h$j(B b_0 $B$OJQ7A$5$l!"$b$H$N(B b_0 $B$+$i$O$_=P$7$F<~0O$N(B box $B$?$A$H8r$o$j$r;}$A$^$9!#(B
-$B$I$N(B box $B$H8r$o$k$+$r(B8$B9TL\$H(B9$B9TL\$N@_Dj$K4p$E$$$FH=Dj$7!"8r$o$k$HH=Dj$5$l$?(B box $B$r(B tree $B$KDI2C$7$^$9!#(B
-$B$3$l$G(B1$B%9%F%C%W$,=*$o$j$G$9!#(B
-$B<!$N%9%F%C%W$G$O!"0l2sL\$N%9%F%C%W$GA*$P$l$?(B box $B$?$A$KBP$7$FF1$8$h$&$K?tCM@QJ,$r9T$J$$!"8r$o$k(B box $B$NH=Dj$r$7$^$9!#(B
-$B$3$l$r(B steps = 10$B2s$/$jJV$7$F:G=*E*$K=PMh>e$,$C$?(B tree $B$N(B box $B$N?t$,(B 19351 $B$H$$$&$3$H$K$J$j$^$9!#(B
+14行目で計算が行なわれます。
+現在 tree の 21回目の分割において選ばれているのは b_0 のみなので、b_0 を rk4 で送ります。
+すなわち、ルンゲ・クッタ法で -0.1秒の数値積分を行ないます。
+この積分により b_0 は変形され、もとの b_0 からはみ出して周囲の box たちと交わりを持ちます。
+どの box と交わるかを8行目と9行目の設定に基づいて判定し、交わると判定された box を tree に追加します。
+これで1ステップが終わりです。
+次のステップでは、一回目のステップで選ばれた box たちに対して同じように数値積分を行ない、交わる box の判定をします。
+これを steps = 10回くり返して最終的に出来上がった tree の box の数が 19351 ということになります。
 </P>
 
-<H1 id="model">$B%b%G%k$r:n$k(B</H1>
+<H1 id="model">モデルを作る</H1>
 <P>
-$B:n$j$?$$%b%G%k$K;w$F$$$k%b%G%k$r(B GAIODIR/models $B$+$i8+$D$1$F!">/$7$:$DJQ7A$7$F$$$/$H$h$$$G$7$g$&!#(B
-$BB?>/(B C$B8@8l$NCN<1$,I,MW$K$J$j$^$9!#(B
-$B%b%G%kL>(B.c $B$H$$$&L>A0$G%U%!%$%k$rJ]B8$7$F!"(BGAIODIR/models $B$G(B make $B$r<B9T$9$k$H!"(BGIODIR/models/$B%"!<%-%F%/%A%cL>(B/ $B$H$$$&%G%#%l%/%H%j$K(B $B%b%G%kL>(B.so $B$H$$$&%U%!%$%k$,$G$-$^$9!#(B
-$B$3$l$G:n$C$?%b%G%k$r(B dansebook.ps $B$K$"$k4{@=$N%b%G%k$HF1MM$K(B Model('$B%b%G%kL>(B') $B$G8F$S=P$;$^$9!#(B
+作りたいモデルに似ているモデルを GAIODIR/models から見つけて、少しずつ変形していくとよいでしょう。
+多少 C言語の知識が必要になります。
+モデル名.c という名前でファイルを保存して、GAIODIR/models で make を実行すると、GIODIR/models/アーキテクチャ名/ というディレクトリに モデル名.so というファイルができます。
+これで作ったモデルを dansebook.ps にある既製のモデルと同様に Model('モデル名') で呼び出せます。
 </P>
 
-<H1 id="functions">$B4X?t$H$=$N0z?t(B</H1>
+<H1 id="functions">関数とその引数</H1>
 
 
-<H1 id="compile">$B;29MJ88%(B</H1>
+<H1 id="compile">参考文献</H1>
 <P>
 <OL>
 <LI id="dansebook"> M. Dellnitz, G. Froyland and O. Junge, The Algorithms Behind GAIO - Set Oriented Numerical Methods for Dyanmical Systems, GAIODIR/doc/matlab/dansebook.ps
@@ -209,6 +209,6 @@ box $B$NJ,3d$O3F:BI8J}8~$K=g$K9T$J$o$l!":#$N>l9g$@$HAj6u4V$O(B3$B<!85$J$N$G$=
 <HR>
 <ADDRESS>
 2002-07-29
-<A href="mailto:arai@kusm.kyoto-u.ac.jp">$B9S0f(B $B?W(B </A>
+<A href="mailto:arai@kusm.kyoto-u.ac.jp">荒井 迅 </A>
 </ADDRESS>
 </HTML>
